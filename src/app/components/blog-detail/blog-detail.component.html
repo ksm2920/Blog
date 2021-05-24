@@ -1,0 +1,10 @@
+<div *ngIf="blog">
+
+    <h2>{{blog.title | uppercase}} Details</h2>
+    <div><span>id: </span>{{blog.id}}</div>
+    <div>
+      <label for="blog-title">Blog title: </label>
+      <input id="blog-title" [(ngModel)]="blog.title" placeholder="title"/>
+    </div>
+    <button (click)="goBack()">go back</button>
+  </div>

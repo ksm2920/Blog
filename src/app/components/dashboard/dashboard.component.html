@@ -1,0 +1,7 @@
+<h2>Top Blogs</h2>
+<div class="blogs-menu">
+  <a *ngFor="let blog of blogs"
+    routerLink="/blogs/{{blog.id}}">
+    {{blog.title}}
+  </a>
+</div>

@@ -9,6 +9,8 @@ import { BlogDetailComponent } from './components/blog-detail/blog-detail.compon
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddBlogComponent } from './components/add-blog/add-blog.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AddPostComponent } from './components/add-post/add-post.component'
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { AddBlogComponent } from './components/add-blog/add-blog.component';
     BlogDetailComponent,
     PageNotFoundComponent,
     DashboardComponent,
-    AddBlogComponent
+    AddBlogComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

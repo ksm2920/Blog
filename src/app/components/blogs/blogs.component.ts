@@ -24,4 +24,8 @@ export class BlogsComponent implements OnInit {
     .subscribe(blogs => this.blogs = blogs);
   }
   
+  delete(blog: Blog): void {
+    this.blogs = this.blogs.filter(b => b !== blog);
+    this.service.deleteBlog(blog.id).subscribe();
+  }
 }

@@ -1,0 +1,10 @@
+<div formArrayName="posts">
+    <h3>Post</h3>
+    <div *ngFor="let p of posts.controls; let i = index">
+       <label for="post"></label>
+       <input type="text" [formControlName]="i"> 
+    </div>
+    <button (click)="addPost()">Add</button>
+
+</div>
+

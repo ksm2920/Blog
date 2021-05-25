@@ -26,5 +26,16 @@ export class BlogService {
       console.log(updateUrl, blog)
       return this.http.put<Blog>(updateUrl, blog)
     }
+
+    addBlog(blog: Blog): Observable<Blog> {
+      const postUrl = `${this.blogCRUDUrl}`;
+      console.log(blog);
+      return this.http.post<Blog>(postUrl, blog)
+    }
+
+    deleteBlog(id: number): Observable<Blog> {
+      const deleteUrl = `${this.blogCRUDUrl}/${id}`;
+      return this.http.delete<Blog>(deleteUrl);
+    }
   }
   

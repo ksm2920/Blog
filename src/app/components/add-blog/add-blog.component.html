@@ -1,1 +1,12 @@
-<p>add-blog works!</p>
+<form [formGroup]="blogForm" (ngSubmit)="add(blogForm.value)">
+    <label for="new-blog">Blog title: </label>
+    <input type="text" id="new-blog" formControlName="title"><br><br>
+    <label for="new-blog">User ID: </label>
+    <input type="number" id="new-blog" formControlName="userId">
+
+    <button class="add-button" type="submit">Add blog</button>
+</form>
+
+<p>
+    {{blogForm.value | json}}
+</p>

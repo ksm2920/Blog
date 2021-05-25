@@ -3,7 +3,12 @@
     <li *ngFor="let blog of blogs">
         <a routerLink="/blogs/{{blog.id}}">
             <span class="badge">{{blog.id}} </span> {{blog.title}} 
+            <span style="float: right;">posts: {{blog.posts.length}}</span>
         </a>
+        <button class="delete" title="delete blog"
+        (click)="delete(blog)">x</button>
     </li>
 </ul>
+
+<app-add-blog></app-add-blog>
 

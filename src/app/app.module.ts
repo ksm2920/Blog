@@ -8,6 +8,7 @@ import { BlogsComponent } from './components/blogs/blogs.component';
 import { BlogDetailComponent } from './components/blog-detail/blog-detail.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AddBlogComponent } from './components/add-blog/add-blog.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     BlogsComponent,
     BlogDetailComponent,
     PageNotFoundComponent,
-    DashboardComponent
+    DashboardComponent,
+    AddBlogComponent
   ],
   imports: [
     BrowserModule,

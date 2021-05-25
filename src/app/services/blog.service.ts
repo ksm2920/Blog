@@ -1,24 +1,30 @@
 import { Injectable } from '@angular/core';
-import { BLOGS } from '../models/mock-blogs';
 import { Blog } from '../models/Blog';
 import { Observable } from 'rxjs';
-import { of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BlogService {
-  private blogUrl = 'https://mi-blogs.azurewebsites.net/api/Blogs';
+  private blogCRUDUrl = 'https://mi-blogs.azurewebsites.net/api/Blogs';
   constructor(
     private http: HttpClient) { }
-  getBlogs(): Observable<Blog[]> {
-    const url = `${this.blogUrl}/user/1`
-    return this.http.get<Blog[]>(url)
-  }
+    
+    getBlogs(): Observable<Blog[]> {
+      const readUrl = `${this.blogCRUDUrl}/user/1`
+      return this.http.get<Blog[]>(readUrl)
+    }
+    
+    getBlog(blogId: number): Observable<Blog> {
+      const readUrl = `${this.blogCRUDUrl}/${blogId}`;
+      return this.http.get<Blog>(readUrl)
+    }
 
-  getBlog(id: number): Observable<Blog> {
-    const url = `${this.blogUrl}/${id}`;
-    return this.http.get<Blog>(url)
+    updateBlog(blog: Blog): Observable<Blog> {
+      const updateUrl = `${this.blogCRUDUrl}/${blog.id}`;
+      console.log(updateUrl, blog)
+      return this.http.put<Blog>(updateUrl, blog)
+    }
   }
-}
+  

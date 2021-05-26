@@ -10,7 +10,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AddBlogComponent } from './components/add-blog/add-blog.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddPostComponent } from './components/add-post/add-post.component'
+import { AddPostComponent } from './components/add-post/add-post.component';
+import { PostsComponent } from './components/posts/posts.component';
+import { PostDetailComponent } from './components/post-detail/post-detail.component'
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { AddPostComponent } from './components/add-post/add-post.component'
     PageNotFoundComponent,
     DashboardComponent,
     AddBlogComponent,
-    AddPostComponent
+    AddPostComponent,
+    PostsComponent,
+    PostDetailComponent
   ],
   imports: [
     BrowserModule,

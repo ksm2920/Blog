@@ -1,0 +1,12 @@
+<div *ngIf="blog">
+    <ul class="posts">
+    <li *ngFor="let post of blog.posts">
+      <a routerLink="/posts/{{post.id}}">
+        {{post.id}}
+        <span class="badge">{{post.title}} </span> 
+      </a>
+      <!-- <button class="delete" title="delete blog"
+        (click)="delete(blog)">x</button> -->
+      </li>
+</ul>
+</div>

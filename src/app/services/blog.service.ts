@@ -8,34 +8,35 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BlogService {
   private blogCRUDUrl = 'https://mi-blogs.azurewebsites.net/api/Blogs';
+
   constructor(
     private http: HttpClient) { }
     
     getBlogs(): Observable<Blog[]> {
-      const readUrl = `${this.blogCRUDUrl}/user/1`
-      return this.http.get<Blog[]>(readUrl)
+      const readBlogsUrl = `${this.blogCRUDUrl}/user/1`
+      return this.http.get<Blog[]>(readBlogsUrl)
     }
     
     getBlog(blogId: number): Observable<Blog> {
-      const readUrl = `${this.blogCRUDUrl}/${blogId}`;
-      return this.http.get<Blog>(readUrl)
+      const readBlogUrl = `${this.blogCRUDUrl}/${blogId}`;
+      return this.http.get<Blog>(readBlogUrl)
     }
 
     updateBlog(blog: Blog): Observable<Blog> {
-      const updateUrl = `${this.blogCRUDUrl}/${blog.id}`;
-      console.log(updateUrl, blog)
-      return this.http.put<Blog>(updateUrl, blog)
+      const updateBlogUrl = `${this.blogCRUDUrl}/${blog.id}`;
+      console.log(updateBlogUrl, blog)
+      return this.http.put<Blog>(updateBlogUrl, blog)
     }
 
     addBlog(blog: Blog): Observable<Blog> {
-      const postUrl = `${this.blogCRUDUrl}`;
+      const postBlogUrl = `${this.blogCRUDUrl}`;
       console.log(blog);
-      return this.http.post<Blog>(postUrl, blog)
+      return this.http.post<Blog>(postBlogUrl, blog)
     }
 
     deleteBlog(id: number): Observable<Blog> {
-      const deleteUrl = `${this.blogCRUDUrl}/${id}`;
-      return this.http.delete<Blog>(deleteUrl);
+      const deleteBlogUrl = `${this.blogCRUDUrl}/${id}`;
+      return this.http.delete<Blog>(deleteBlogUrl);
     }
   }
   

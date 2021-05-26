@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Post } from 'src/app/models/Post';
+import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
   selector: 'app-add-post',
@@ -7,6 +10,7 @@ import { FormArray, FormBuilder } from '@angular/forms';
   styleUrls: ['./add-post.component.scss']
 })
 export class AddPostComponent implements OnInit {
+  posts: Post[] = [];
   postForm = this.fb.group({
     id: [''],
     title: [''],
@@ -16,17 +20,25 @@ export class AddPostComponent implements OnInit {
       this.fb.control('')
     ])
   })
-  constructor(private fb: FormBuilder) { }
+  constructor(
+    private service: BlogService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder
+    ) { }
 
   ngOnInit(): void {
   }
 
-  get posts() {
-    return this.postForm.get('posts') as FormArray;
-  }
+  addPost(post: Post): void { 
+    const blogId = Number(this.route.snapshot.paramMap.get('id'));
 
-  addPost(): void {
-    this.posts.push(this.fb.control(''));
+    post = new Post( 0, post.title, post.content, blogId, []);
+    if(!post) {
+      return;
+    }
+    this.service.addPost(post)
+    .subscribe(post => {
+      this.posts.push(post);
+    })
   }
-
 }

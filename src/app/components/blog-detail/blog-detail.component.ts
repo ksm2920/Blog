@@ -14,7 +14,7 @@ export class BlogDetailComponent implements OnInit {
   constructor(
     private service: BlogService,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
     ) { }
     
     ngOnInit(): void {
@@ -25,7 +25,6 @@ export class BlogDetailComponent implements OnInit {
       const id = Number(this.route.snapshot.paramMap.get('id'));
       this.service.getBlog(id)
       .subscribe(blog => this.blog = blog);
-      console.log(this.blog);
     }
     
     save(): void {

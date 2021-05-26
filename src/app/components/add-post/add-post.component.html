@@ -1,10 +1,13 @@
-<div formArrayName="posts">
-    <h3>Post</h3>
-    <div *ngFor="let p of posts.controls; let i = index">
-       <label for="post"></label>
-       <input type="text" [formControlName]="i"> 
-    </div>
-    <button (click)="addPost()">Add</button>
+<h2>New Post</h2>
+<form [formGroup]="postForm" (ngSubmit)="addPost(postForm.value)">
+    <label for="new-post">Title: </label>
+    <input type="text" id="new-post" formControlName="title"><br><br>
+    <label for="new-post">Content: </label><br>
+    <textarea name="" id="" cols="100" rows="10" formControlName="content"></textarea><br>
+    <input type="text" formControlName="blogId" hidden>
+    <button class="add-button" type="submit">Post</button>
+</form>
 
-</div>
-
+<p>
+    {{postForm.value | json}}
+</p>

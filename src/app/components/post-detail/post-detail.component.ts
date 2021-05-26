@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Blog } from 'src/app/models/Blog';
 import { Post } from 'src/app/models/Post';
-import { PostService } from 'src/app/services/post.service';
+import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
   selector: 'app-post-detail',
@@ -13,7 +13,7 @@ export class PostDetailComponent implements OnInit {
 @Input() blog?: Blog;
 post: Post;
   constructor(
-    private service: PostService,
+    private service: BlogService,
     private route: ActivatedRoute
     ) { }
   ngOnInit(): void {
@@ -24,7 +24,6 @@ post: Post;
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.service.getPost(id)
     .subscribe(post => this.post = post);
-    console.log(this.post);
   }
 
 }

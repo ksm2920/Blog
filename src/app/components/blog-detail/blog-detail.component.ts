@@ -26,16 +26,5 @@ export class BlogDetailComponent implements OnInit {
       this.service.getBlog(id)
       .subscribe(blog => this.blog = blog);
     }
-    
-    save(): void {
-      if(this.blog) {
-      this.service.updateBlog(this.blog)
-      .subscribe(() => this.goBack());
-      }
-    }
-
-    goBack(): void {
-      this.location.back();
-    }
   }
   

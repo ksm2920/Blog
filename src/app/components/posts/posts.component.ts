@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Blog } from 'src/app/models/Blog';
@@ -12,7 +12,7 @@ import { BlogService } from 'src/app/services/blog.service';
 })
 export class PostsComponent implements OnInit {
   @Input() blog?: Blog;
-  posts: Post[] = [];
+  // posts: Post[] = [];
   
   postForm = this.fb.group({
     id: [''],
@@ -26,18 +26,22 @@ export class PostsComponent implements OnInit {
   constructor(
     private service: BlogService,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private ref: ChangeDetectorRef
     ) { }
 
   ngOnInit(): void {
-    this.getBlog();
+    //this.getBlog();
   }
 
-  getBlog(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.service.getBlog(id)
-    .subscribe(blog => this.blog = blog);
-  }
+  // getBlog(): void {
+  //   const id = Number(this.route.snapshot.paramMap.get('id'));
+  //   this.service.getBlog(id)
+  //   .subscribe(blog => { 
+  //     this.blog = blog
+  //     // this.posts = blog.posts; 
+  //   });
+  // }
 
   addPost(post: Post): void { 
     const blogId = Number(this.route.snapshot.paramMap.get('id'));
@@ -48,7 +52,8 @@ export class PostsComponent implements OnInit {
     }
     this.service.addPost(post)
     .subscribe(post => {
-      this.posts.push(post);
+      this.blog.posts.push(post);
+      this.ref.detectChanges();
     })
   }
 
@@ -58,7 +63,7 @@ export class PostsComponent implements OnInit {
   // }
 
   deletePost(post: Post): void {
-    this.posts = this.posts.filter(p => p !== post);
+    this.blog.posts = this.blog.posts.filter(p => p !== post);
     this.service.deletePost(post.id).subscribe();
   }
 

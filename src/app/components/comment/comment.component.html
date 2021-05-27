@@ -1,0 +1,10 @@
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+<div formArrayName="comments">
+    <h4>Comments</h4>
+    <div *ngFor="let c of commens.controls; let i= index">
+        <label for="comment"></label>
+        <input type="text" [formControlName] = "i">
+    </div>
+    <button (click)="addComment()">Add</button>
+</div>
+</form>

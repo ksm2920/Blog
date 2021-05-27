@@ -40,6 +40,11 @@ export class BlogService {
       return this.http.delete<Blog>(deleteBlogUrl);
     }
 
+    // getPosts(id: number): Observable<Post[]> {
+    //   const readBlogsUrl = `${this.blogCRUDUrl}/Blogs/${id}`
+    //   return this.http.get<Post[]>(readBlogsUrl)
+    // }
+
     getPost(id: number): Observable<Post> {
       const getPostUrl = `${this.blogCRUDUrl}/Posts/${id}`;
       console.log(getPostUrl);
@@ -49,6 +54,11 @@ export class BlogService {
     addPost(post: Post): Observable<Post> {
       const postPostUrl = `${this.blogCRUDUrl}/Posts`;
       return this.http.post<Post>(postPostUrl, post);
+    }
+
+    deletePost(id: number): Observable<Post> {
+      const deletePostUrl = `${this.blogCRUDUrl}/Posts/${id}`;
+      return this.http.delete<Post>(deletePostUrl);
     }
   }
   

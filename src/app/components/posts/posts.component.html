@@ -1,3 +1,13 @@
+<h2>New Post</h2>
+<form [formGroup]="postForm" (ngSubmit)="addPost(postForm.value)">
+    <label for="new-post">Title: </label>
+    <input type="text" id="new-post" formControlName="title"><br><br>
+    <label for="new-post">Content: </label><br>
+    <textarea name="" id="" cols="100" rows="10" formControlName="content"></textarea><br>
+    <input type="text" formControlName="blogId" hidden>
+    <button class="add-button" type="submit">Post</button>
+</form>
+
 <h3>Posts</h3>
 <div *ngIf="blog">
     <ul class="posts">
@@ -6,8 +16,8 @@
         {{post.id}}
         <span class="badge">{{post.title}} </span> 
       </a>
-      <!-- <button class="delete" title="delete blog"
-        (click)="delete(blog)">x</button> -->
+      <button class="delete" title="delete-post"
+        (click)="deletePost(post)">x</button>
       </li>
 </ul>
 </div>

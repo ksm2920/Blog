@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { Blog } from 'src/app/models/Blog';
 import { BlogService } from 'src/app/services/blog.service';
 import { BLOGS } from '../../models/mock-blogs';
@@ -9,14 +10,36 @@ import { BLOGS } from '../../models/mock-blogs';
   styleUrls: ['./blogs.component.scss']
 })
 export class BlogsComponent implements OnInit {
-  
   blogs: Blog[] = [];
   selectedBlog?: Blog;
 
-  constructor(private service: BlogService) { }
+  blogForm = this.fb.group({
+    id: [''],
+    title: [''],
+    userId: [''],
+    posts: this.fb.array([
+      this.fb.control('')
+    ])
+  })
+
+  constructor(
+    private service: BlogService,
+    private fb: FormBuilder
+    ) { }
   
   ngOnInit(): void {
     this.getBlogs();
+  }
+
+  add(blog: Blog): void {
+    blog = new Blog( 0, blog.title, blog.userId, []) ;
+    if(!blog) {
+      return;
+    }
+    this.service.addBlog(blog)
+    .subscribe(blog => {
+      this.blogs.push(blog);
+    })
   }
 
   getBlogs(): void {

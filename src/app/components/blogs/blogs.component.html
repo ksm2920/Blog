@@ -1,4 +1,11 @@
-<app-add-blog></app-add-blog>
+<h2>New Blog</h2>
+<form [formGroup]="blogForm" (ngSubmit)="add(blogForm.value)">
+    <label for="new-blog">Title: </label>
+    <input type="text" id="new-blog" formControlName="title">
+    <label for="new-blog">User ID</label><br>
+    <input type="number" id="new-blog" formControlName="userId">
+    <button class="add-button" type="submit">Add</button>
+</form>
 
 <h2>Blogs</h2>
 <ul class="blogs">

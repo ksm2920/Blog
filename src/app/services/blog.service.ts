@@ -14,8 +14,8 @@ export class BlogService {
   constructor(
     private http: HttpClient) { }
     
-    getBlogs(): Observable<Blog[]> {
-      const readBlogsUrl = `${this.blogCRUDUrl}/Blogs/user/100`
+    getBlogs(id: number): Observable<Blog[]> {
+      const readBlogsUrl = `${this.blogCRUDUrl}/Blogs/user/${id}`
       return this.http.get<Blog[]>(readBlogsUrl)
     }
     

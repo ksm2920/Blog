@@ -11,6 +11,7 @@ import { BlogService } from 'src/app/services/blog.service';
 })
 export class BlogDetailComponent implements OnInit {
   @Input() blog?: Blog;
+  blogs: Blog[] = [];
   constructor(
     private service: BlogService,
     private location: Location,
@@ -25,6 +26,16 @@ export class BlogDetailComponent implements OnInit {
       const id = Number(this.route.snapshot.paramMap.get('id'));
       this.service.getBlog(id)
       .subscribe(blog => this.blog = blog);
+    }
+
+    delete(blog: Blog): void {
+      this.blogs = this.blogs.filter(b => b !== blog);
+      this.service.deleteBlog(blog.id).subscribe();
+      this.goBack();
+    }
+
+    goBack() {
+      this.location.back();
     }
   }
   

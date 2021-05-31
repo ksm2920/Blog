@@ -28,7 +28,7 @@ export class BlogsComponent implements OnInit {
     ) { }
   
   ngOnInit(): void {
-    this.getBlogs();
+   
   }
 
   add(blog: Blog): void {
@@ -42,8 +42,8 @@ export class BlogsComponent implements OnInit {
     })
   }
 
-  getBlogs(): void {
-    this.service.getBlogs()
+  getBlogs(blog: Blog): void {
+    this.service.getBlogs(blog.userId)
     .subscribe(blogs => this.blogs = blogs);
   }
   

@@ -4,7 +4,7 @@
     <input type="text" id="new-blog" formControlName="title">
     <label for="new-blog">User ID</label><br>
     <input type="number" id="new-blog" formControlName="userId">
-    <button class="add-button" type="submit">Add</button>
+    <button class="add-button" type="submit" (click)="getBlogs(blogForm.value)">Add</button>
 </form>
 
 <h2>Blogs</h2>
@@ -14,7 +14,7 @@
             <span class="badge">{{blog.id}} </span> {{blog.title}} 
         </a>
         <button class="delete" title="delete blog"
-        (click)="delete(blog)">x</button>
+        (click)="delete(blog)">X</button>
     </li>
 </ul>
 

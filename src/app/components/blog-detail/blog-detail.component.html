@@ -1,6 +1,8 @@
 <div *ngIf="blog">
   
   <h2>{{blog.title | uppercase}}</h2>
+  <button class="delete" title="delete blog"
+  (click)="delete(blog)">Delete blog</button>
 
 </div>
 <app-posts [blog]="blog"></app-posts>

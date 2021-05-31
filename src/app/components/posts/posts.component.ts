@@ -31,6 +31,7 @@ export class PostsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void { }
+  
   addPost(post: Post): void { 
     const blogId = Number(this.route.snapshot.paramMap.get('id'));
 

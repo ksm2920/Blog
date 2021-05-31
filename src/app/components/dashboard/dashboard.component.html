@@ -1,5 +1,10 @@
-<h2>Top Blogs</h2>
-<div class="blogs-menu">
+<h2>Search Blogs</h2>
+<form [formGroup]="blogSearchForm">
+<input type="number" name="userId" formControlName="userId" placeholder="Search by User ID" style="padding:15px; width: 100%;">
+<button type="submit" (click)="getBlogs(blogSearchForm.value)">Search</button>
+</form>
+<div class="blogs">
+  <h2 id="message"></h2>
   <a *ngFor="let blog of blogs"
     routerLink="/blogs/{{blog.id}}">
     {{blog.title}}

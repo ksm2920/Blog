@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { CommentsComponent } from './components/comments/comments.component'
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CommentsComponent } from './components/comments/comments.component'
     CommentsComponent
   ],
   imports: [
+    RouterModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

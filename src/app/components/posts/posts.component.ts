@@ -30,19 +30,7 @@ export class PostsComponent implements OnInit {
     private ref: ChangeDetectorRef
     ) { }
 
-  ngOnInit(): void {
-    //this.getBlog();
-  }
-
-  // getBlog(): void {
-  //   const id = Number(this.route.snapshot.paramMap.get('id'));
-  //   this.service.getBlog(id)
-  //   .subscribe(blog => { 
-  //     this.blog = blog
-  //     // this.posts = blog.posts; 
-  //   });
-  // }
-
+  ngOnInit(): void { }
   addPost(post: Post): void { 
     const blogId = Number(this.route.snapshot.paramMap.get('id'));
 
@@ -56,12 +44,6 @@ export class PostsComponent implements OnInit {
       this.ref.detectChanges();
     })
   }
-
-  // getPosts(id: number): void {
-  //   this.service.getPosts(id)
-  //   .subscribe(posts => this.posts = posts);
-  // }
-
   deletePost(post: Post): void {
     this.blog.posts = this.blog.posts.filter(p => p !== post);
     this.service.deletePost(post.id).subscribe();

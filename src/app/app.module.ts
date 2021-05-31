@@ -11,7 +11,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
-import { CommentComponent } from './components/comment/comment.component'
+import { CommentsComponent } from './components/comments/comments.component'
 
 @NgModule({
   declarations: [
@@ -22,7 +22,7 @@ import { CommentComponent } from './components/comment/comment.component'
     DashboardComponent,
     PostsComponent,
     PostDetailComponent,
-    CommentComponent
+    CommentsComponent
   ],
   imports: [
     BrowserModule,

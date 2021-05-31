@@ -1,0 +1,18 @@
+<h2>Comments</h2>
+<form [formGroup]="commentForm" (ngSubmit)="addComment(commentForm.value)">
+    <label for="new-comment"></label>
+    <input type="text" id="new-comment" formControlName="content"><br><br>
+    <input type="text" formControlName="postId" hidden>
+    <button class="add-button" type="submit">Add a comment</button>
+</form>
+
+<h3>Comments</h3>
+<div *ngIf="post">
+    <ul class="comments">
+        <li *ngFor="let comment of post.comments">
+            <span class="badge">{{comment.content}} </span> 
+            <span><button class="delete" title="delete-comment"
+            (click)="deleteComment(comment)">x</button></span>
+        </li>
+    </ul>
+</div>

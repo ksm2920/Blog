@@ -3,6 +3,7 @@ import { Blog } from '../models/Blog';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Post } from '../models/Post';
+import { Comment } from '../models/Comment';
 
 @Injectable({
   providedIn: 'root'
@@ -40,11 +41,6 @@ export class BlogService {
       return this.http.delete<Blog>(deleteBlogUrl);
     }
 
-    // getPosts(id: number): Observable<Post[]> {
-    //   const readBlogsUrl = `${this.blogCRUDUrl}/Blogs/${id}`
-    //   return this.http.get<Post[]>(readBlogsUrl)
-    // }
-
     getPost(id: number): Observable<Post> {
       const getPostUrl = `${this.blogCRUDUrl}/Posts/${id}`;
       console.log(getPostUrl);
@@ -60,5 +56,16 @@ export class BlogService {
       const deletePostUrl = `${this.blogCRUDUrl}/Posts/${id}`;
       return this.http.delete<Post>(deletePostUrl);
     }
-  }
+
+    addComment(comment: Comment): Observable<Comment> {
+      const postCommentUrl = `${this.blogCRUDUrl}/Comments`;
+      return this.http.post<Comment>(postCommentUrl, comment);
+    }
+
+    deleteComment(id: number): Observable<Comment> {
+      const deleteCommentUrl= `${this.blogCRUDUrl}/Comments/${id}`;
+      return this.http.delete<Comment>(deleteCommentUrl);
+    }
   
+  }
+    

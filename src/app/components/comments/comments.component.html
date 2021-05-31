@@ -7,12 +7,12 @@
 </form>
 
 <h3>Comments</h3>
-<div *ngIf="post">
+<div *ngIf="post" [comment]='comment'>
     <ul class="comments">
         <li *ngFor="let comment of post.comments">
-            <span class="badge">{{comment.content}} </span> 
-            <span><button class="delete" title="delete-comment"
-            (click)="deleteComment(comment)">x</button></span>
+            <app-edit-input [data]='comment.content' (focusOut)='editComment(comment, $event)'></app-edit-input>
+            <button class="save" title="update-comment"(click)="update(comment)">Update</button>
+            <button class="delete" title="delete-comment" (click)="deleteComment(comment)">x</button>
         </li>
     </ul>
 </div>

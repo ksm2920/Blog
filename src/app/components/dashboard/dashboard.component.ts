@@ -10,10 +10,7 @@ import { BlogService } from 'src/app/services/blog.service';
 })
 export class DashboardComponent implements OnInit {
   blogSearchForm = this.fb.group({
-    userId: [''],
-    posts: this.fb.array([
-      this.fb.control('')
-    ])
+    userId: ['']
   })
   
   blogs: Blog[] = [];
@@ -26,12 +23,17 @@ export class DashboardComponent implements OnInit {
       
     }
     
-    getBlogs(blog: Blog): void {
-      if(!this.blogs){
-        document.getElementById("message").innerHTML= "No blogs";
-      }
-      this.service.getBlogs(blog.userId)
-      .subscribe(blogs => this.blogs = blogs);
+    getBlogs(blogSearchForm): void {
+      this.service.getBlogs(blogSearchForm.userId)
+      .subscribe(blogs => {
+        this.blogs = blogs;
+        if(blogs.length == 0) {
+          document.getElementById("message").innerHTML= "No blogs";
+        } else {
+          document.getElementById("message").innerHTML= "";
+        }
+      });
+     this.blogSearchForm.get('userId').setValue("");
     }
   }
   

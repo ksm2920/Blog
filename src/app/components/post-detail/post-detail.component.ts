@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Blog } from 'src/app/models/Blog';
@@ -11,10 +12,12 @@ import { BlogService } from 'src/app/services/blog.service';
 })
 export class PostDetailComponent implements OnInit {
 @Input() blog?: Blog;
+posts: Post[] = [];
 post: Post;
   constructor(
     private service: BlogService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
     ) { }
   ngOnInit(): void {
     this.getPost();
@@ -26,4 +29,27 @@ post: Post;
     .subscribe(post => this.post = post);
   }
 
+  update(post: Post): void {
+    this.service.updatePost(post)
+    .subscribe();
+    console.log(post);
+  }
+
+  delete(post: Post): void {
+    this.posts = this.posts.filter(p => p !== post);
+    this.service.deleteBlog(post.id).subscribe();
+    this.goBack();
+  }
+
+  goBack() {
+    this.location.back();
+  }
+
+  saveTitle(value) {
+    this.post.title = value;
+  }
+
+  saveContent(value) {
+    this.post.content = value;
+  }
 }

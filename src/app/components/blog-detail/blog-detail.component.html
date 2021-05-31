@@ -1,8 +1,6 @@
 <div *ngIf="blog">
   
   <h2>{{blog.title | uppercase}}</h2>
-  <p>User Id: {{blog.userId}}</p>
-  <p>Blog Id: {{blog.id}}</p>
 
 </div>
 <app-posts [blog]="blog"></app-posts>

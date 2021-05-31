@@ -62,6 +62,11 @@ export class BlogService {
       return this.http.post<Comment>(postCommentUrl, comment);
     }
 
+    editComment(comment: Comment): Observable<Comment> {
+      const updateCommentUrl = `${this.blogCRUDUrl}/Comments/${comment.id}`;
+      return this.http.put<Comment>(updateCommentUrl, comment);
+    }
+
     deleteComment(id: number): Observable<Comment> {
       const deleteCommentUrl= `${this.blogCRUDUrl}/Comments/${id}`;
       return this.http.delete<Comment>(deleteCommentUrl);

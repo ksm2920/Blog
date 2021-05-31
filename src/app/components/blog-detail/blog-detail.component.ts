@@ -27,6 +27,12 @@ export class BlogDetailComponent implements OnInit {
       this.service.getBlog(id)
       .subscribe(blog => this.blog = blog);
     }
+    
+    edit(blog: Blog): void {
+      this.service.updateBlog(blog)
+      .subscribe();
+      console.log(blog);
+    }
 
     delete(blog: Blog): void {
       this.blogs = this.blogs.filter(b => b !== blog);

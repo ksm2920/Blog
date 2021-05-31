@@ -26,7 +26,6 @@ export class BlogService {
 
     updateBlog(blog: Blog): Observable<Blog> {
       const updateBlogUrl = `${this.blogCRUDUrl}/Blogs/${blog.id}`;
-      console.log(updateBlogUrl, blog)
       return this.http.put<Blog>(updateBlogUrl, blog)
     }
 
@@ -52,6 +51,11 @@ export class BlogService {
       return this.http.post<Post>(postPostUrl, post);
     }
 
+    updatePost(post: Post): Observable<Post> {
+      const updatePostUrl = `${this.blogCRUDUrl}/Posts/${post.id}`;
+      return this.http.put<Post>(updatePostUrl, post);
+    }
+
     deletePost(id: number): Observable<Post> {
       const deletePostUrl = `${this.blogCRUDUrl}/Posts/${id}`;
       return this.http.delete<Post>(deletePostUrl);
@@ -62,7 +66,7 @@ export class BlogService {
       return this.http.post<Comment>(postCommentUrl, comment);
     }
 
-    editComment(comment: Comment): Observable<Comment> {
+    updateComment(comment: Comment): Observable<Comment> {
       const updateCommentUrl = `${this.blogCRUDUrl}/Comments/${comment.id}`;
       return this.http.put<Comment>(updateCommentUrl, comment);
     }

@@ -1,11 +1,9 @@
 <div *ngIf="blog">
+  <app-edit-input [data]='blog.title' (focusOut)='saveInput($event)'></app-edit-input>
   
-  <h2>{{blog.title | uppercase}}</h2>
-  <button class="edit" title="edit blog"
-  (click)="edit(blog)">Edit blog</button>
-  <button class="delete" title="delete blog"
-  (click)="delete(blog)">Delete blog</button>
-
+  <button class="save" title="update blog"(click)="update(blog)">Update blog</button>
+  <button class="delete" title="delete blog"(click)="delete(blog)">Delete blog</button>
+  
 </div>
 <app-posts [blog]="blog"></app-posts>
 

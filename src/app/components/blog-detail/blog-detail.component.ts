@@ -12,6 +12,7 @@ import { BlogService } from 'src/app/services/blog.service';
 export class BlogDetailComponent implements OnInit {
   @Input() blog?: Blog;
   blogs: Blog[] = [];
+ 
   constructor(
     private service: BlogService,
     private location: Location,
@@ -28,7 +29,7 @@ export class BlogDetailComponent implements OnInit {
       .subscribe(blog => this.blog = blog);
     }
     
-    edit(blog: Blog): void {
+    update(blog: Blog): void {
       this.service.updateBlog(blog)
       .subscribe();
       console.log(blog);
@@ -42,6 +43,10 @@ export class BlogDetailComponent implements OnInit {
 
     goBack() {
       this.location.back();
+    }
+
+    saveInput(value) {
+      this.blog.title = value;
     }
   }
   

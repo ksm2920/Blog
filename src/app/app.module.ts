@@ -8,11 +8,12 @@ import { BlogsComponent } from './components/blogs/blogs.component';
 import { BlogDetailComponent } from './components/blog-detail/blog-detail.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 import { CommentsComponent } from './components/comments/comments.component'
 import { RouterModule } from '@angular/router';
+import { EditInputComponent } from './components/edit-input/edit-input.component';
 
 @NgModule({
   declarations: [
@@ -23,14 +24,16 @@ import { RouterModule } from '@angular/router';
     DashboardComponent,
     PostsComponent,
     PostDetailComponent,
-    CommentsComponent
+    CommentsComponent,
+    EditInputComponent
   ],
   imports: [
     RouterModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

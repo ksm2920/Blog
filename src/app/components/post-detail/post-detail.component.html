@@ -1,4 +1,4 @@
-<div *ngIf="post">
+<div *ngIf="post" class="posts">
     <app-edit-input [data]='post.title' (focusOut)='saveTitle($event)'></app-edit-input>
     <app-edit-input [data]='post.content'(focusOut)='saveContent($event)'></app-edit-input>
 

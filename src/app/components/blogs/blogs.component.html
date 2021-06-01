@@ -4,17 +4,16 @@
     <input type="text" id="new-blog" formControlName="title">
     <label for="new-blog">User ID</label><br>
     <input type="number" id="new-blog" formControlName="userId">
-    <button class="add-button" type="submit" (click)="getBlogs(blogForm.value)">Add</button>
+    <button class="add-button" type="submit" (click)="getBlogs(blogForm.value)">Create a blog</button>
 </form>
 
-<h2>Blogs</h2>
 <ul class="blogs">
     <li *ngFor="let blog of blogs">
         <a routerLink="/blogs/{{blog.id}}">
             <span class="badge">{{blog.id}} </span> {{blog.title}} 
         </a>
-        <button class="delete" title="delete blog"
-        (click)="delete(blog)">X</button>
+        <!-- <button class="delete" title="delete blog"
+        (click)="delete(blog)">X</button> -->
     </li>
 </ul>
 

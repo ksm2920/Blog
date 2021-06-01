@@ -1,6 +1,6 @@
 <h2>Search Blogs</h2>
 <form [formGroup]="blogSearchForm">
-<input type="number" id="searchInput" name="userId" formControlName="userId" placeholder="Search by User ID" style="padding:15px; width: 100%;">
+<input type="number" id="searchInput" name="userId" formControlName="userId" placeholder="Search by User ID">
 <button type="submit" (click)="getBlogs(blogSearchForm.value)">Search</button>
 </form> 
 <div class="blogs">

@@ -7,7 +7,7 @@
 </form>
 
 <h3>Comments</h3>
-<div *ngIf="post" [comment]='comment'>
+<div *ngIf="post">
     <ul class="comments">
         <li *ngFor="let comment of post.comments">
             <app-edit-input [data]='comment.content' (focusOut)='editComment(comment, $event)'></app-edit-input>

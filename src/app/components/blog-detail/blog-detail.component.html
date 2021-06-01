@@ -1,5 +1,5 @@
 <div *ngIf="blog">
-  <app-edit-input [data]='blog.title' (focusOut)='saveInput($event)'></app-edit-input>
+  <app-edit-input [data]='blog.title' (focusOut)='saveInput($event)' style="font-weight: bold ;"></app-edit-input>
   
   <button class="save" title="update blog"(click)="update(blog)">Update blog</button>
   <button class="delete" title="delete blog"(click)="delete(blog)">Delete blog</button>

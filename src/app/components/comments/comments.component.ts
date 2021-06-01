@@ -6,7 +6,7 @@ import { Post } from 'src/app/models/Post';
 import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
-  selector: 'app-comment',
+  selector: 'app-comments',
   templateUrl: './comments.component.html',
   styleUrls: ['./comments.component.scss']
 })

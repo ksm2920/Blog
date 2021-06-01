@@ -4,11 +4,11 @@ import { Blog } from 'src/app/models/Blog';
 import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  selector: 'app-search-blog',
+  templateUrl: './search-blog.component.html',
+  styleUrls: ['./search-blog.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class SearchBlogComponent implements OnInit {
   blogSearchForm = this.fb.group({
     userId: ['']
   })

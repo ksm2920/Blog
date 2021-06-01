@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { BlogsComponent } from './components/blogs/blogs.component';
 import { BlogDetailComponent } from './components/blog-detail/blog-detail.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { SearchBlogComponent } from './components/search-blog/search-blog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
@@ -21,7 +21,7 @@ import { EditInputComponent } from './components/edit-input/edit-input.component
     BlogsComponent,
     BlogDetailComponent,
     PageNotFoundComponent,
-    DashboardComponent,
+    SearchBlogComponent,
     PostsComponent,
     PostDetailComponent,
     CommentsComponent,

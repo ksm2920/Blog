@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Blog } from 'src/app/models/Blog';
 import { BlogService } from 'src/app/services/blog.service';
 
@@ -10,7 +10,7 @@ import { BlogService } from 'src/app/services/blog.service';
 })
 export class SearchBlogComponent implements OnInit {
   blogSearchForm = this.fb.group({
-    userId: ['']
+    userId: ['', Validators.required]
   })
   
   blogs: Blog[] = [];
@@ -21,6 +21,9 @@ export class SearchBlogComponent implements OnInit {
     
   ngOnInit(): void {
       
+  }
+  get userId() {
+    return this.blogSearchForm.get('userId');
   }
     
   getBlogs(blogSearchForm): void {
@@ -33,7 +36,7 @@ export class SearchBlogComponent implements OnInit {
         document.getElementById("message").innerHTML= "";
       }
     });
-    this.blogSearchForm.get('userId').setValue("");
+    // this.blogSearchForm.get('userId').setValue("");
   }
 
   delete(blog: Blog): void {

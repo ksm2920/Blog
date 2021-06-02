@@ -5,38 +5,41 @@ ul {
 li {
   list-style-type: none;
   display: inline-block;
+  margin: 0 20px 0 0 ; 
 }
 
 a {
   background-color: #3f525c;
-  border-radius: 2px;
+  border-bottom-left-radius: 5px;
   padding: 1rem;
   font-size: 1.2rem;
   text-decoration: none; 
   color: #fff;
   text-align: center;
   width: 100%;
-  min-width: 70px;
-  margin: .5rem auto;
   box-sizing: border-box;
-  
+  min-width: 100px;
   /* flexbox */
   order: 0;
   flex: 0 1 auto;
   align-self: auto;
 }
 
-
 #searchInput {
   width: 90%;
   padding: 10px;
+}
+
+.delete {
+  border-radius: 0;
+  border-top-right-radius: 5px;
+  padding: 1.3rem .5rem 1rem;
 }
 
 @media (min-width: 768px) {
   a {
     width: 18%;
     box-sizing: content-box;
-    margin: 10px;
     &:hover {
       background-color: #000;
     }

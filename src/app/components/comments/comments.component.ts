@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Comment } from 'src/app/models/Comment';
 import { Post } from 'src/app/models/Post';
@@ -15,7 +15,7 @@ export class CommentsComponent implements OnInit {
 
   commentForm = this.fb.group({
     id: [''],
-    content: [''],
+    content: ['', Validators.required],
     postId: ['']
   })
   constructor(
@@ -28,8 +28,8 @@ export class CommentsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get commens() {
-    return this.commentForm.get('comments') as FormArray
+  get comment() {
+    return this.commentForm.get('content');
   }
 
   addComment(comment:Comment): void {
@@ -42,6 +42,7 @@ export class CommentsComponent implements OnInit {
     .subscribe(comment => {
       this.post.comments.push(comment);
       this.ref.detectChanges();
+      this.commentForm.get('content').setValue('');
     })
   }
 

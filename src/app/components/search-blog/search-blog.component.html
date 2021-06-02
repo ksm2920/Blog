@@ -1,7 +1,12 @@
 <h2>Search Blogs</h2>
 <form [formGroup]="blogSearchForm">
-  <input type="number" id="searchInput" name="userId" formControlName="userId" placeholder="Search by User ID">
-  <button type="submit" (click)="getBlogs(blogSearchForm.value)">Search</button>
+  <input type="number" id="searchInput" name="userId" formControlName="userId" placeholder="Search by User ID" required>
+  <div *ngIf="userId.invalid && (userId.dirty || userId.touched)">
+    <div *ngIf="userId.errors?.required" class="errors">
+      User ID is required
+    </div>
+  </div>
+  <button type="submit" (click)="getBlogs(blogSearchForm.value)" [disabled]="blogSearchForm.invalid">Search</button>
 </form> 
 <div class="blogs">
   <h2 id="message"></h2>
@@ -10,7 +15,7 @@
       <a routerLink="/blogs/{{blog.id}}">
         {{blog.title}}
       </a>
-      <button class="delete" title="delete blog"
+      <button class="delete" id="delete" title="delete blog"
         (click)="delete(blog)">X</button>
     </li>
   </ul>

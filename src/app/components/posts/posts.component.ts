@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Blog } from 'src/app/models/Blog';
 import { Post } from 'src/app/models/Post';
@@ -16,13 +16,14 @@ export class PostsComponent implements OnInit {
   
   postForm = this.fb.group({
     id: [''],
-    title: [''],
-    content: [''],
+    title: ['', [Validators.required, Validators.minLength(3)]],
+    content: ['', [Validators.required, Validators.minLength(3)]],
     blogId: [''],
     comments: this.fb.array([
       this.fb.control('')
     ])
   })
+  
   constructor(
     private service: BlogService,
     private route: ActivatedRoute,
@@ -31,6 +32,14 @@ export class PostsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void { }
+
+  get title() {
+    return this.postForm.get('title');
+  }
+
+  get content() {
+    return this.postForm.get('content');
+  }
   
   addPost(post: Post): void { 
     const blogId = Number(this.route.snapshot.paramMap.get('id'));
@@ -43,8 +52,11 @@ export class PostsComponent implements OnInit {
     .subscribe(post => {
       this.blog.posts.push(post);
       this.ref.detectChanges();
+      this.postForm.get('title').setValue('');
+      this.postForm.get('content').setValue('');
     })
   }
+
   deletePost(post: Post): void {
     this.blog.posts = this.blog.posts.filter(p => p !== post);
     this.service.deletePost(post.id).subscribe();

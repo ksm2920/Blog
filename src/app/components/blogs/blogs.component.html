@@ -2,9 +2,22 @@
 <form [formGroup]="blogForm" (ngSubmit)="add(blogForm.value)">
     <label for="new-blog">Title: </label>
     <input type="text" id="new-blog" formControlName="title">
+    <div *ngIf="title.invalid && (title.dirty || title.touched)">
+        <div *ngIf="title.errors?.required" class="errors">
+          Title is required
+        </div>
+        <div *ngIf="title.errors?.minlength" class="errors">
+          Title must contain at least tree letters
+        </div>
+    </div>
     <label for="new-blog">User ID</label><br>
     <input type="number" id="new-blog" formControlName="userId">
-    <button class="add-button" type="submit" (click)="getBlogs(blogForm.value)">Create a blog</button>
+    <div *ngIf="userId.invalid && (userId.dirty || userId.touched)">
+        <div *ngIf="userId.errors?.required" class="errors">
+          User ID is required
+        </div>
+      </div>
+    <button class="add-button" type="submit" (click)="getBlogs(blogForm.value)" [disabled]="blogForm.invalid">Create a blog</button>
 </form>
 
 <ul class="blogs">

@@ -2,10 +2,26 @@
 <form [formGroup]="postForm" (ngSubmit)="addPost(postForm.value)">
   <label for="new-post">Title: </label>
   <input type="text" id="new-post" formControlName="title">
+  <div *ngIf="title.invalid && (title.dirty || title.touched)">
+    <div *ngIf="title.errors?.required" class="errors">
+      Title is required
+    </div>
+    <div *ngIf="title.errors?.minlength" class="errors">
+      Title must contain at least tree letters
+    </div>
+  </div>
   <label for="new-post">Content: </label>
   <textarea name="" id="" cols="100" rows="10" formControlName="content"></textarea>
+  <div *ngIf="content.invalid && (content.dirty || content.touched)">
+    <div *ngIf="content.errors?.required" class="errors">
+      Content is required
+    </div>
+    <div *ngIf="content.errors?.minlength" class="errors">
+      Content must contain at least tree letters
+    </div>
+  </div>
   <input type="text" formControlName="blogId" hidden>
-  <button class="add-button" type="submit">Post</button>
+  <button class="add-button" type="submit" [disabled]="postForm.invalid">Post</button>
 </form>
 
 <div *ngIf="blog"> 

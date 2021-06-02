@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Blog } from 'src/app/models/Blog';
 import { BlogService } from 'src/app/services/blog.service';
 import { BLOGS } from '../../models/mock-blogs';
@@ -15,8 +15,8 @@ export class BlogsComponent implements OnInit {
 
   blogForm = this.fb.group({
     id: [''],
-    title: [''],
-    userId: [''],
+    title: ['', [Validators.required, Validators.minLength(3)]],
+    userId: ['', Validators.required],
     posts: this.fb.array([
       this.fb.control('')
     ])
@@ -29,6 +29,14 @@ export class BlogsComponent implements OnInit {
   
   ngOnInit(): void {
    
+  }
+
+  get title() {
+    return this.blogForm.get('title');
+  }
+
+  get userId() {
+    return this.blogForm.get('userId');
   }
 
   add(blog: Blog): void {

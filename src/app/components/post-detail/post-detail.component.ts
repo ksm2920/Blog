@@ -11,13 +11,12 @@ import { BlogService } from 'src/app/services/blog.service';
   styleUrls: ['./post-detail.component.scss']
 })
 export class PostDetailComponent implements OnInit {
-@Input() blog?: Blog;
 posts: Post[] = [];
 post: Post;
   constructor(
     private service: BlogService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
     ) { }
   ngOnInit(): void {
     this.getPost();
@@ -37,8 +36,9 @@ post: Post;
 
   delete(post: Post): void {
     this.posts = this.posts.filter(p => p !== post);
-    this.service.deleteBlog(post.id).subscribe();
+    this.service.deletePost(post.id).subscribe();
     this.goBack();
+    
   }
 
   goBack() {

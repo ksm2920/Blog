@@ -9,6 +9,13 @@
     &:hover {
       left: .1em;
     }
+    button { 
+      position: absolute;
+      right: 0;
+      top: 5px;
+      margin:0;
+      padding: 4px;
+    }
   }
   
   a {

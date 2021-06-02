@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { Blog } from 'src/app/models/Blog';
@@ -17,6 +17,7 @@ export class BlogDetailComponent implements OnInit {
     private service: BlogService,
     private location: Location,
     private route: ActivatedRoute,
+    private ref: ChangeDetectorRef
     ) { }
     
     ngOnInit(): void {

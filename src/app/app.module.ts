@@ -14,6 +14,7 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 import { CommentsComponent } from './components/comments/comments.component'
 import { RouterModule } from '@angular/router';
 import { EditInputComponent } from './components/edit-input/edit-input.component';
+import { EditTextareaComponent } from './components/edit-textarea/edit-textarea.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { EditInputComponent } from './components/edit-input/edit-input.component
     PostsComponent,
     PostDetailComponent,
     CommentsComponent,
-    EditInputComponent
+    EditInputComponent,
+    EditTextareaComponent
   ],
   imports: [
     RouterModule,

@@ -19,21 +19,26 @@ export class SearchBlogComponent implements OnInit {
     private fb: FormBuilder
     ) { }
     
-    ngOnInit(): void {
+  ngOnInit(): void {
       
-    }
-    
-    getBlogs(blogSearchForm): void {
-      this.service.getBlogs(blogSearchForm.userId)
-      .subscribe(blogs => {
-        this.blogs = blogs;
-        if(blogs.length == 0) {
-          document.getElementById("message").innerHTML= "No blogs";
-        } else {
-          document.getElementById("message").innerHTML= "";
-        }
-      });
-     this.blogSearchForm.get('userId').setValue("");
-    }
   }
+    
+  getBlogs(blogSearchForm): void {
+    this.service.getBlogs(blogSearchForm.userId)
+    .subscribe(blogs => {
+      this.blogs = blogs;
+      if(blogs.length == 0) {
+        document.getElementById("message").innerHTML= "No blogs";
+      } else {
+        document.getElementById("message").innerHTML= "";
+      }
+    });
+    this.blogSearchForm.get('userId').setValue("");
+  }
+
+  delete(blog: Blog): void {
+    this.blogs = this.blogs.filter(b => b !== blog);
+    this.service.deleteBlog(blog.id).subscribe(); 
+  }
+}
   

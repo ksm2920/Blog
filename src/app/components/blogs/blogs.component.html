@@ -10,10 +10,10 @@
 <ul class="blogs">
     <li *ngFor="let blog of blogs">
         <a routerLink="/blogs/{{blog.id}}">
-            <span class="badge">{{blog.id}} </span> {{blog.title}} 
+            <span class="badge">{{blog.userId}} </span> {{blog.title}} 
         </a>
-        <!-- <button class="delete" title="delete blog"
-        (click)="delete(blog)">X</button> -->
+        <button class="delete" title="delete blog"
+        (click)="delete(blog)">X</button>
     </li>
 </ul>
 

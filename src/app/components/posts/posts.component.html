@@ -8,13 +8,14 @@
   <button class="add-button" type="submit">Post</button>
 </form>
 
-<div *ngIf="blog">
+<div *ngIf="blog"> 
   <ul class="posts">
     <li *ngFor="let post of blog.posts">
       <a routerLink="/posts/{{post.id}}">
-        <span class="badge">{{post.title}} </span> 
-        <p>{{post.content}}</p>
+        <p id="title">{{post.title}} </p> 
+        <p id="content">{{post.content}}</p>
       </a>
+      <button class="delete" title="delete post"(click)="deletePost(post)">X</button>
     </li>
   </ul>
 </div>

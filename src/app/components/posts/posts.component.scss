@@ -10,6 +10,7 @@ textarea {
 ul { 
     padding: 0;
     li {
+        position: relative;
         list-style-type: none;
         width: 90%;
         border: 1px solid black;
@@ -24,11 +25,22 @@ ul {
                 color: gray;
             }
         }
+        .delete {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            margin: 0;
+            padding: 5px 8px;
+        }
+        
     }
 }
 
-
-.badge {
-    font-weight: blod;
-    font-size: 1.5rem;
+#title {
+    font-size: 20px;
 }
+
+#content {
+    font-size: 18px;
+}
+

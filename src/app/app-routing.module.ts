@@ -8,10 +8,10 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
 
 const routes: Routes = [
   { path: 'blogs', component: BlogsComponent},
-  { path: 'dashboard', component: SearchBlogComponent},
+  { path: 'searchblog', component: SearchBlogComponent},
   { path: 'blogs/:id', component: BlogDetailComponent},
   { path: 'posts/:id', component: PostDetailComponent},
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  { path: '', redirectTo: '/searchblog', pathMatch: 'full'},
   { path: '**', component: PageNotFoundComponent},
 ];
 

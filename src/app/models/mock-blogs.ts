@@ -1,9 +1,9 @@
 import { Blog } from "src/app/models/Blog";
 
 export const BLOGS: Blog[] = [
-{id: 11, title: "Blog11", userId: 1, posts: []},
-{id: 12, title: "Blog12", userId: 1, posts: []},
-{id: 13, title: "Blog13", userId: 1, posts: []},
-{id: 14, title: "Blog14", userId: 1, posts: []},
-{id: 15, title: "Blog15", userId: 1, posts: []},
+{id: 1, title: "Blog1", userId: 1, posts: []},
+{id: 2, title: "Blog2", userId: 1, posts: []},
+{id: 3, title: "Blog3", userId: 1, posts: []},
+{id: 4, title: "Blog4", userId: 1, posts: []},
+{id: 5, title: "Blog5", userId: 1, posts: []},
 ]

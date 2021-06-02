@@ -36,7 +36,7 @@ export class SearchBlogComponent implements OnInit {
         document.getElementById("message").innerHTML= "";
       }
     });
-    // this.blogSearchForm.get('userId').setValue("");
+    this.blogSearchForm.reset();
   }
 
   delete(blog: Blog): void {

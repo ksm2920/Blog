@@ -52,8 +52,7 @@ export class PostsComponent implements OnInit {
     .subscribe(post => {
       this.blog.posts.push(post);
       this.ref.detectChanges();
-      this.postForm.get('title').setValue('');
-      this.postForm.get('content').setValue('');
+      this.postForm.reset();
     })
   }
 

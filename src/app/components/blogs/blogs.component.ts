@@ -47,6 +47,7 @@ export class BlogsComponent implements OnInit {
     this.service.addBlog(blog)
     .subscribe(blog => {
       this.blogs.push(blog);
+      this.blogForm.reset();
     })
   }
 

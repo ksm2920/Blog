@@ -21,25 +21,20 @@ export class BlogDetailComponent implements OnInit {
     ) { }
     
     ngOnInit(): void {
-      this.getBlog();
+     this.service.selectedBlog$
+     .subscribe(blog => {
+       this.blog = blog;
+     })
+     this.getBlog();
     }
     
     getBlog(): void {
       const id = Number(this.route.snapshot.paramMap.get('id'));
-      this.service.getBlog(id)
-      .subscribe(blog => this.blog = blog);
+      this.service.getBlog(id);
     }
     
-    update(blog: Blog): void {
-      this.service.updateBlog(blog)
-      .subscribe();
-      console.log(blog);
-    }
-
-    delete(blog: Blog): void {
-      this.blogs = this.blogs.filter(b => b !== blog);
-      this.service.deleteBlog(blog.id).subscribe();
-      this.goBack();
+    updateBlog(blog: Blog): void {
+      this.service.updateBlog(blog);
     }
 
     goBack() {

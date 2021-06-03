@@ -3,7 +3,7 @@
     <app-edit-textarea [data]='post.content'(focusOut)='saveContent($event)'></app-edit-textarea>
     
 </div>
-<button class="save" title="update post"(click)="update(post)">Update</button>
+<button class="save" title="update post"(click)="updatePost(post)">Update</button>
 <button (click)="goBack()">Back</button>
 
 <app-comments [post]="post"></app-comments>

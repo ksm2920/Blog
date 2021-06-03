@@ -12,6 +12,7 @@ import { BlogService } from 'src/app/services/blog.service';
 })
 export class CommentsComponent implements OnInit {
   @Input() post?: Post;
+  comment: Comment;
 
   commentForm = this.fb.group({
     id: [''],
@@ -26,43 +27,38 @@ export class CommentsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.service.selectedComment$
+    .subscribe(comment => {
+      this.comment = comment;
+    })
   }
 
-  get comment() {
+  get content() {
     return this.commentForm.get('content');
   }
 
-  addComment(comment:Comment): void {
+  async addComment(comment:Comment) {
     const postId = Number(this.route.snapshot.paramMap.get('id'));
     comment = new Comment(0, comment.content, postId);
     if(!comment) {
       return;
     }
-    this.service.addComment(comment)
-    .subscribe(comment => {
-      this.post.comments.push(comment);
-      this.ref.detectChanges();
-      this.commentForm.get('content').setValue('');
-    })
+    let fetchedComment = await this.service.addComment(comment);
+    this.post.comments.push(fetchedComment);
+    this.ref.detectChanges();
+    this.commentForm.get('content').setValue('');
   }
 
   update(comment: Comment): void {
-    this.service.updateComment(comment)
-    .subscribe();
-    console.log(comment);
+    this.service.updateComment(comment);
   }
 
   deleteComment(comment: Comment): void {
     this.post.comments = this.post.comments.filter(c => c !== comment);
-    this.service.deleteComment(comment.id).subscribe();
-  }
-
-  onSubmit(): void {
-    console.log(this.commentForm.value);
+    this.service.deleteComment(comment.id);
   }
 
   editComment(comment, value): void {
-    console.log(value);
     comment.content = value;
   }
 }

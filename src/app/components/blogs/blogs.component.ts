@@ -28,7 +28,8 @@ export class BlogsComponent implements OnInit {
     ) { }
   
   ngOnInit(): void {
-   
+    this.service.blogs$
+    .subscribe(blogs => this.blogs = blogs);
   }
 
   get title() {
@@ -39,25 +40,22 @@ export class BlogsComponent implements OnInit {
     return this.blogForm.get('userId');
   }
 
-  add(blog: Blog): void {
+  async addBlog(blog: Blog) {
     blog = new Blog( 0, blog.title, blog.userId, []) ;
     if(!blog) {
       return;
     }
-    this.service.addBlog(blog)
-    .subscribe(blog => {
-      this.blogs.push(blog);
-      this.blogForm.reset();
-    })
+    let fetchedBlog = await this.service.addBlog(blog);
+    this.blogs.push(fetchedBlog);
+    this.blogForm.reset();
   }
 
   getBlogs(blog: Blog): void {
-    this.service.getBlogs(blog.userId)
-    .subscribe(blogs => this.blogs = blogs);
+    this.service.fetchBlogs(blog.userId);
   }
   
-  delete(blog: Blog): void {
+  deleteBlog(blog: Blog): void {
     this.blogs = this.blogs.filter(b => b !== blog);
-    this.service.deleteBlog(blog.id).subscribe();
+    this.service.deleteBlog(blog.id);
   }
 }

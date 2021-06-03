@@ -18,27 +18,22 @@ post: Post;
     private route: ActivatedRoute,
     private location: Location,
     ) { }
+
   ngOnInit(): void {
+    this.service.selectedPost$
+    .subscribe((post) => {
+      this.post = post;
+    });
     this.getPost();
   }
 
   getPost(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.service.getPost(id)
-    .subscribe(post => this.post = post);
   }
 
-  update(post: Post): void {
-    this.service.updatePost(post)
-    .subscribe();
-    console.log(post);
-  }
-
-  delete(post: Post): void {
-    this.posts = this.posts.filter(p => p !== post);
-    this.service.deletePost(post.id).subscribe();
-    this.goBack();
-    
+  updatePost(post: Post): void {
+    this.service.updatePost(post);
   }
 
   goBack() {

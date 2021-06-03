@@ -3,7 +3,7 @@
     <label for="new-comment"></label>
     <input type="text" id="new-comment" formControlName="content"><br><br>
     <input type="text" formControlName="postId" hidden>
-    <div *ngIf="comment.invalid && (comment.dirty || comment.touched)"></div>
+    <div *ngIf="content.invalid && (content.dirty || content.touched)"></div>
     <button class="add-button" type="submit" [disabled]="commentForm.invalid">Add a comment</button>
 </form>
 

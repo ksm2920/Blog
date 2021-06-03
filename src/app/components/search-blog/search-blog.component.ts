@@ -20,29 +20,29 @@ export class SearchBlogComponent implements OnInit {
     ) { }
     
   ngOnInit(): void {
-      
+    this.service.blogs$
+    .subscribe(blogs => {
+      this.blogs = blogs;
+      if(this.blogs.length == 0) {
+        document.getElementById("message").innerHTML= "No blogs";
+      } else {
+        document.getElementById("message").innerHTML= "";
+      }
+    }); 
   }
   get userId() {
     return this.blogSearchForm.get('userId');
   }
     
   getBlogs(blogSearchForm): void {
-    this.service.getBlogs(blogSearchForm.userId)
-    .subscribe(blogs => {
-      this.blogs = blogs;
-      if(blogs.length == 0) {
-        document.getElementById("message").innerHTML= "No blogs";
-      } else {
-        document.getElementById("message").innerHTML= "";
-      }
-    });
+    this.service.fetchBlogs(blogSearchForm.userId);
+    
     this.blogSearchForm.reset();
-    console.warn("999999999999999999999999999999999999")
   }
 
   delete(blog: Blog): void {
     this.blogs = this.blogs.filter(b => b !== blog);
-    this.service.deleteBlog(blog.id).subscribe(); 
+    this.service.deleteBlog(blog.id); 
   }
 
   test(): string {

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Blog } from '../models/Blog';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Post } from '../models/Post';
 import { Comment } from '../models/Comment';
@@ -9,71 +9,110 @@ import { Comment } from '../models/Comment';
   providedIn: 'root'
 })
 export class BlogService {
+  private blogs = new Subject<Blog[]>();
+  private selectedBlog = new Subject<Blog>();
+  private selectedPost = new Subject<Post>();
+  private selectedComment = new Subject<Comment>();
+  blogs$ = this.blogs.asObservable();
+  selectedBlog$ = this.selectedBlog.asObservable();
+  selectedPost$ = this.selectedPost.asObservable();
+  selectedComment$ = this.selectedComment.asObservable();
+
   private blogCRUDUrl = 'https://mi-blogs.azurewebsites.net/api';
 
   constructor(
     private http: HttpClient) { }
     
-    getBlogs(id: number): Observable<Blog[]> {
-      const readBlogsUrl = `${this.blogCRUDUrl}/Blogs/user/${id}`
-      return this.http.get<Blog[]>(readBlogsUrl)
+    fetchBlogs(userId: number): void {
+      const readBlogsUrl = `${this.blogCRUDUrl}/Blogs/user/${userId}`
+      this.http
+        .get<Blog[]>(readBlogsUrl)
+        .toPromise().then((data) => {
+          this.blogs.next(data);
+        });
     }
     
-    getBlog(id: number): Observable<Blog> {
+    getBlog(id: number): void {
       const readBlogUrl = `${this.blogCRUDUrl}/Blogs/${id}`;
-      return this.http.get<Blog>(readBlogUrl)
+      this.http
+        .get<Blog>(readBlogUrl)
+        .toPromise().then((blog) => {
+          this.selectedBlog.next(blog);
+        });
     }
 
-    updateBlog(blog: Blog): Observable<Blog> {
+    updateBlog(blog: Blog): void {
       const updateBlogUrl = `${this.blogCRUDUrl}/Blogs/${blog.id}`;
-      return this.http.put<Blog>(updateBlogUrl, blog)
+      this.http.put<Blog>(updateBlogUrl, blog)
+        .toPromise().then((blog) => {
+          console.log("Updated blog")
+        });;
     }
 
-    addBlog(blog: Blog): Observable<Blog> {
+    addBlog(blog: Blog): Promise<Blog> {
       const postBlogUrl = `${this.blogCRUDUrl}/Blogs`;
-      console.log(blog);
-      return this.http.post<Blog>(postBlogUrl, blog)
+      return this.http
+        .post<Blog>(postBlogUrl, blog)
+        .toPromise();
     }
 
-    deleteBlog(id: number): Observable<Blog> {
+    deleteBlog(id: number): void {
       const deleteBlogUrl = `${this.blogCRUDUrl}/Blogs/${id}`;
-      return this.http.delete<Blog>(deleteBlogUrl);
+      this.http.delete<Blog>(deleteBlogUrl)
+      .toPromise().then((blog) => {
+        console.log("A blog is deleted")
+      });
     }
 
-    getPost(id: number): Observable<Post> {
+    getPost(id: number): void {
       const getPostUrl = `${this.blogCRUDUrl}/Posts/${id}`;
-      console.log(getPostUrl);
-      return this.http.get<Post>(getPostUrl);
+      this.http.get<Post>(getPostUrl)
+      .toPromise().then((post) => {
+        this.selectedPost.next(post);
+      });
     }
 
-    addPost(post: Post): Observable<Post> {
+    addPost(post: Post): Promise<Post> {
       const postPostUrl = `${this.blogCRUDUrl}/Posts`;
-      return this.http.post<Post>(postPostUrl, post);
+      return this.http.post<Post>(postPostUrl, post).toPromise();
     }
 
-    updatePost(post: Post): Observable<Post> {
+    updatePost(post: Post): void {
       const updatePostUrl = `${this.blogCRUDUrl}/Posts/${post.id}`;
-      return this.http.put<Post>(updatePostUrl, post);
+      this.http.put<Post>(updatePostUrl, post)
+        .toPromise().then((post) => {
+          console.log("A post is updated")
+      });
     }
 
-    deletePost(id: number): Observable<Post> {
+    deletePost(id: number): void {
       const deletePostUrl = `${this.blogCRUDUrl}/Posts/${id}`;
-      return this.http.delete<Post>(deletePostUrl);
+      this.http.delete<Post>(deletePostUrl)
+      .toPromise().then((post) => {
+        console.log("A post is deleted")
+      });;
     }
 
-    addComment(comment: Comment): Observable<Comment> {
+    addComment(comment: Comment): Promise<Comment> {
       const postCommentUrl = `${this.blogCRUDUrl}/Comments`;
-      return this.http.post<Comment>(postCommentUrl, comment);
+      return this.http.post<Comment>(postCommentUrl, comment)
+      .toPromise();
     }
 
-    updateComment(comment: Comment): Observable<Comment> {
+    updateComment(comment: Comment): void {
       const updateCommentUrl = `${this.blogCRUDUrl}/Comments/${comment.id}`;
-      return this.http.put<Comment>(updateCommentUrl, comment);
+      this.http.put<Comment>(updateCommentUrl, comment)
+      .toPromise().then((comment) => {
+        console.log("A comment is updated")
+      });
     }
 
-    deleteComment(id: number): Observable<Comment> {
+    deleteComment(id: number): void {
       const deleteCommentUrl= `${this.blogCRUDUrl}/Comments/${id}`;
-      return this.http.delete<Comment>(deleteCommentUrl);
+      this.http.delete<Comment>(deleteCommentUrl)
+      .toPromise().then((comment) => {
+        console.log("A comment is deleted")
+      });
     }
   
   }

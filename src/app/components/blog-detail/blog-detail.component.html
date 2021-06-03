@@ -2,8 +2,7 @@
   <app-edit-input [data]='blog.title' (focusOut)='saveInput($event)' style="font-weight: bold ;"></app-edit-input>
   <p>User ID: {{blog.userId}}</p>
   
-  <button class="save" title="update blog"(click)="update(blog)">Update</button>
-  <!-- <button class="delete" title="delete blog"(click)="delete(blog)">Delete blog</button> -->
+  <button class="save" title="update blog"(click)="updateBlog(blog)">Update</button>
   <button (click)="goBack()">Back</button>
 </div>
 <app-posts [blog]="blog"></app-posts>

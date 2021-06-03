@@ -19,8 +19,7 @@ export class MockBlogService {
     {id: 5, title: "Blog5", userId: 1, posts: []},
   ]
   
-  getBlogs(): Observable<Blog[]> {
-  
-    return of(this.testData);
+  fetchBlogs(): void {
+    this.blogs.next(this.testData);
   }
 }

@@ -1,5 +1,5 @@
 <h2>New Blog</h2>
-<form [formGroup]="blogForm" (ngSubmit)="add(blogForm.value)">
+<form [formGroup]="blogForm" (ngSubmit)="addBlog(blogForm.value)">
     <label for="new-blog">Title: </label>
     <input type="text" id="new-blog" formControlName="title">
     <div *ngIf="title.invalid && (title.dirty || title.touched)">
@@ -26,7 +26,7 @@
             <span class="badge">{{blog.userId}} </span> {{blog.title}} 
         </a>
         <button class="delete" title="delete blog"
-        (click)="delete(blog)">X</button>
+        (click)="deleteBlog(blog)">X</button>
     </li>
 </ul>
 

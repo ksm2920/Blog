@@ -12,7 +12,7 @@ import { BlogService } from 'src/app/services/blog.service';
 })
 export class PostsComponent implements OnInit {
   @Input() blog?: Blog;
-  // posts: Post[] = [];
+  post: Post;
   
   postForm = this.fb.group({
     id: [''],
@@ -31,7 +31,10 @@ export class PostsComponent implements OnInit {
     private ref: ChangeDetectorRef
     ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.service.selectedPost$
+    .subscribe(post => this.post = post);
+  }
 
   get title() {
     return this.postForm.get('title');
@@ -41,24 +44,21 @@ export class PostsComponent implements OnInit {
     return this.postForm.get('content');
   }
   
-  addPost(post: Post): void { 
+  async addPost(post: Post) { 
     const blogId = Number(this.route.snapshot.paramMap.get('id'));
-
     post = new Post( 0, post.title, post.content, blogId, []);
     if(!post) {
       return;
     }
-    this.service.addPost(post)
-    .subscribe(post => {
-      this.blog.posts.push(post);
-      this.ref.detectChanges();
-      this.postForm.reset();
-    })
+    let fetchedPost = await this.service.addPost(post);
+    this.blog.posts.push(fetchedPost);
+    this.ref.detectChanges();
+    this.postForm.reset();
   }
 
   deletePost(post: Post): void {
     this.blog.posts = this.blog.posts.filter(p => p !== post);
-    this.service.deletePost(post.id).subscribe();
+    this.service.deletePost(post.id);
   }
 
 }

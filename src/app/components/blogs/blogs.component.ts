@@ -28,8 +28,7 @@ export class BlogsComponent implements OnInit {
     ) { }
   
   ngOnInit(): void {
-    this.service.blogs$
-    .subscribe(blogs => this.blogs = blogs);
+    console.log("blog component initated")
   }
 
   get title() {
@@ -48,10 +47,6 @@ export class BlogsComponent implements OnInit {
     let fetchedBlog = await this.service.addBlog(blog);
     this.blogs.push(fetchedBlog);
     this.blogForm.reset();
-  }
-
-  getBlogs(blog: Blog): void {
-    this.service.fetchBlogs(blog.userId);
   }
   
   deleteBlog(blog: Blog): void {

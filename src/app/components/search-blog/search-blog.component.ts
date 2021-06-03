@@ -20,15 +20,16 @@ export class SearchBlogComponent implements OnInit {
     ) { }
     
   ngOnInit(): void {
+    console.log("searchblog component initated")
     this.service.blogs$
-    .subscribe(blogs => {
-      this.blogs = blogs;
-      if(this.blogs.length == 0) {
-        document.getElementById("message").innerHTML= "No blogs";
-      } else {
-        document.getElementById("message").innerHTML= "";
-      }
-    }); 
+      .subscribe(blogs => {
+        this.blogs = blogs;
+        if(this.blogs.length == 0) {
+          document.getElementById("message").innerHTML= "No blogs";
+        } else {
+          document.getElementById("message").innerHTML= "";
+        }
+      }); 
   }
   get userId() {
     return this.blogSearchForm.get('userId');

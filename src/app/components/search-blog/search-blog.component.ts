@@ -37,11 +37,16 @@ export class SearchBlogComponent implements OnInit {
       }
     });
     this.blogSearchForm.reset();
+    console.warn("999999999999999999999999999999999999")
   }
 
   delete(blog: Blog): void {
     this.blogs = this.blogs.filter(b => b !== blog);
     this.service.deleteBlog(blog.id).subscribe(); 
+  }
+
+  test(): string {
+    return "hello";
   }
 }
   

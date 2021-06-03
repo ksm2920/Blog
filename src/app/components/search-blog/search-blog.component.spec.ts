@@ -37,5 +37,6 @@ describe('SearchBlogComponent', () => {
     button.triggerEventHandler('click', null);
     fixture.detectChanges();
     expect(component.blogs.length).toBe(5);
+    expect(component.blogs[0].title).toBe('Blog1');
   }));
 });

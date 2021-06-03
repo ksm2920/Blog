@@ -1,4 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormBuilder } from '@angular/forms';
+import { BlogService } from 'src/app/services/blog.service';
+import { MockBlogService } from 'src/app/services/MockBlogService';
 
 import { BlogsComponent } from './blogs.component';
 
@@ -8,7 +12,9 @@ describe('BlogsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BlogsComponent ]
+      declarations: [ BlogsComponent ],
+      imports: [HttpClientModule],
+      providers: [{ provide: BlogService, useClass: MockBlogService }, FormBuilder],
     })
     .compileComponents();
   });
@@ -19,7 +25,8 @@ describe('BlogsComponent', () => {
     fixture.detectChanges();
   });
 
-  // it('should create', () => {
-  //   expect(component).toBeTruthy();
-  // });
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+
 });

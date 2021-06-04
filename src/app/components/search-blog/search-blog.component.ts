@@ -31,6 +31,7 @@ export class SearchBlogComponent implements OnInit {
         }
       }); 
   }
+  
   get userId() {
     return this.blogSearchForm.get('userId');
   }

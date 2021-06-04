@@ -1,7 +1,6 @@
 <div *ngIf="post" class="posts"> 
     <app-edit-input [data]='post.title' (focusOut)='saveTitle($event)' style="font-weight: bold;"></app-edit-input>
     <app-edit-textarea [data]='post.content'(focusOut)='saveContent($event)'></app-edit-textarea>
-    
 </div>
 <button class="save" title="update post"(click)="updatePost(post)">Update</button>
 <button (click)="goBack()">Back</button>

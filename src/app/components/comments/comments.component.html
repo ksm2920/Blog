@@ -7,7 +7,6 @@
     <button class="add-button" type="submit" [disabled]="commentForm.invalid">Add a comment</button>
 </form>
 
-<!-- <h3>Comments</h3> -->
 <div *ngIf="post">
     <ul class="comments">
         <li *ngFor="let comment of post.comments">

@@ -1,7 +1,6 @@
 <div *ngIf="blog">
   <app-edit-input [data]='blog.title' (focusOut)='saveInput($event)' style="font-weight: bold ;"></app-edit-input>
   <p>User ID: {{blog.userId}}</p>
-  
   <button class="save" title="update blog"(click)="updateBlog(blog)">Update</button>
   <button (click)="goBack()">Back</button>
 </div>
